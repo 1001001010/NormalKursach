@@ -74,3 +74,33 @@
 .input-file input[type=file]:disabled + span {
 	background-color: #eee;
 }
+
+.input_name {
+	background-color: #D9D9D9;
+	border: none;
+	border-radius: 2px;
+	height: 30px;
+}
+
+.input_name:active {
+	background: none;
+}
+
+.input_name:checked {
+	background: none;
+}
+
+.first_pad {
+	padding-bottom: 57px;
+}
+
+.input_flex {
+	display: flex;
+	flex-direction: column;
+	gap: 17px;
+}
+
+.container_name {
+	display: flex;
+	
+}

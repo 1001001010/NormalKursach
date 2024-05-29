@@ -41,13 +41,22 @@
     <h3 class="main_text">Перетащите сюда свои треки</h3>
     <form class="first_form" enctype="multipart/form-data" method="POST" action="{{ route('NewMusic') }}">
       @csrf
-      <label class="input-file" for="audioFile">
-        <input type="file" name="music" id="audioFile" accept="audio/*" multiple>
+      <label class="input-file first_pad" for="audioFile">
+        <input type="file" name="music" accept="audio/*" multiple>
         <span>Или выберите файл для загрузки</span>
       </label>
-      <input type="text" name="track_name" id="audioFile">
-      <input type="text" name="artist" id="audioFile">
-      <input type="file" name="cover" id="audioFile">
+      <div class="input_flex">
+        <div class="container_name">
+          <h3 class="main_text">Название трека:</h3>
+          <input class="input_name" type="text" name="track_name">
+        </div>
+
+        <div class="container_name">
+          <h3 class="main_text">Жанр:</h3>
+          <input class="input_name" type="text" name="genre">
+        </div>
+      </div>
+      <input type="file" name="cover">
       <label class="input-file" for="audioFile">
         <button type="submit">Отправить</button>
       </label>
