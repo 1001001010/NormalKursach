@@ -45,20 +45,19 @@
         <input type="file" name="music" accept="audio/*" multiple>
         <span>Или выберите файл для загрузки</span>
       </label>
-      <div class="input_flex">
-        <div class="container_name">
-          <h3 class="main_text">Название трека:</h3>
-          <input class="input_name" type="text" name="track_name">
-        </div>
 
-        <div class="container_name">
-          <h3 class="main_text">Жанр:</h3>
-          <input class="input_name" type="text" name="genre">
-        </div>
+      <div class = "info_container">
+        <h3>Название трека:</h3>
+        <input class="input_name" type="text" name="track_name">
+      </div>
+
+      <div>
+        <h3>Жанр трека:</h3>
+        <input class="input_name" type="text" name="genre">
       </div>
       <input type="file" name="cover">
       <label class="input-file" for="audioFile">
-        <button type="submit">Отправить</button>
+        <button type="submit">Загрузить</button>
       </label>
     </form>
   </div>
