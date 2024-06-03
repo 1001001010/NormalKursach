@@ -42,7 +42,8 @@
     <form class="first_form" enctype="multipart/form-data" method="POST" action="{{ route('NewMusic') }}">
       @csrf
       <label class="input-file first_pad" for="audioFile">
-        <input type="file" name="music" accept="audio/*" multiple>
+        <input type="file" name="music" id="audioFile" accept="audio/*" multiple>
+        <!-- <input type="file"> -->
         <span>Или выберите файл для загрузки</span>
       </label>
 
