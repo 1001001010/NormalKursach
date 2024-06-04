@@ -12,4 +12,8 @@ Route::get('/upload', function () {
     return view('uploadTrackPage');
 });
 
-Route::post('/new_music', [MusicController::class, 'new_music'])->name('NewMusic');
+Route::post('/new_music', [MusicController::class, 'New_Music'])->name('NewMusic');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
