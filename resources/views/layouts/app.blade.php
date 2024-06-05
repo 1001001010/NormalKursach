@@ -38,7 +38,7 @@
                     </form>
                     <li><a href="" class="nav-link px-2 text-white">Для артиста</a></li>
                     <li><a href="/upload" class="nav-link px-2 text-white">Загрузить трек</a></li>
-                    <li><a href="{{ route('login') }}" class="nav-link px-2 text-white">Войти в личный кабинет</a></li>
+
 
                     @guest
                         @if (Route::has('login'))
