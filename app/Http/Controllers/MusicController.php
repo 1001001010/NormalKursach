@@ -10,19 +10,27 @@ class MusicController extends Controller
 {
     public function new_music(Request $request)
     {
-        // Get the uploaded files
-        $musicFile = $request->file('music');
+        // $validatedData = $request->validate([
+        //     'track' => 'required|mimetypes:audio/flac,audio/wav,audio/alac,audio/aiff|max:8192',
+        //     'track_name' => 'required|string',
+        //     'genre_track' => 'required|string',
+        //     'cover' => 'required|image|mimes:jpg,png,jpeg,webp|max:8192'
+        // ]);
+
+        // Получаем трек и обложку
+        $musicFile = $request->file('track');
         $coverFile = $request->file('cover');
-
-        // Get the input data
+        // Получаем имя и жанр трэка
         $trackName = $request->input('track_name');
-        $genre = $request->input('genre');
+        $genre = $request->input('genre_track');
+        // Получение unix времени
+        $timestamp = time();
 
-        // Store the music file with a timestamp
-        $musicPath = $musicFile->storeAs('music', time() . '.' . $musicFile->getClientOriginalExtension(), 'public');
+        // Скачиваем и переименовываем в $timestamp трек
+        $musicPath = $musicFile->storeAs('music', $timestamp. '.'. $musicFile->getClientOriginalExtension(), 'public');
 
-        // Store the cover image with a timestamp
-        $coverPath = $coverFile->storeAs('covers', time() . '.' . $coverFile->getClientOriginalExtension(), 'public');
+        // Скачиваем и переименовываем в $timestamp обложку
+        $coverPath = $coverFile->storeAs('covers', $timestamp. '.'. $coverFile->getClientOriginalExtension(), 'public');
 
         $track = [
             'user_id' => Auth::user()->id,
@@ -32,7 +40,7 @@ class MusicController extends Controller
             'cover_file' => $coverPath
         ];
         Track::create($track);
-        
+
         return redirect()->back();
     }
 }
