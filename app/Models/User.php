@@ -48,4 +48,7 @@ class User extends Authenticatable
     public function tracks() {
         return $this->hasMany(Track::class);
     }
+    public function comment() {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -5,22 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Track extends Model
+class Comment extends Model
 {
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'name',
-        'genre',
-        'music_file',
-        'cover_file',
+        'track_id',
+        'comment',
     ];
-
+    public function track() {
+        return $this->belongsTo(Track::class);
+    }
     public function user() {
         return $this->belongsTo(User::class);
-    }
-    public function comment()
-    {
-        return $this->hasMany(Comment::class);
     }
 }
