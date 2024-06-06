@@ -41,6 +41,8 @@ class MusicController extends Controller
         ];
         Track::create($track);
 
-        return redirect()->back();
+        $track = Track::where('cover_file', $coverPath)->first();
+
+        return redirect()->route('ShawTrack', ['id' => $track]);
     }
 }
