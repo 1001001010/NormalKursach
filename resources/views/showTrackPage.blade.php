@@ -13,7 +13,8 @@
                         <audio controls class="w-100">
                             <source src="{{ asset('storage/' . $track->music_file) }}">
                         </audio>
-                        <button type="button" class="btn btn-outline-warning">Нравится</button>
+                        <a class="btn btn-outline-warning"
+                            href="{{ route('Like', ['track_id' => $track->id]) }}">Нравится</a>
                     </div>
                     <h6 class="border-bottom pb-2 mb-0 pt-4">Комментарии</h6>
                     <div class="form-group py-3">

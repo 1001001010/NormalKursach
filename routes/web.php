@@ -17,6 +17,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/track/{id}', [App\Http\Controllers\TrackController::class, 'show_track'])->name('ShawTrack');
 
+Route::get('/like/{track_id}', [App\Http\Controllers\TrackController::class, 'like'])->name('Like')->middleware('auth');
+
 Route::post('/new_comment/{id}', [App\Http\Controllers\TrackController::class, 'new_comment'])->name('NewCommetn')->middleware('auth');
 
 Route::get('/del_comment/{comment_id}', [App\Http\Controllers\TrackController::class, 'delete_comment'])->name('DeleteComm')->middleware('auth');

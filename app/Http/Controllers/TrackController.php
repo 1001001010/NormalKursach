@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Track;
 use App\Models\Comment;
+use App\Models\Like;
 use Auth;
 
 class TrackController extends Controller
@@ -37,7 +38,8 @@ class TrackController extends Controller
     }
     public function like($track_id)
     {
-        
+        $likes = Like::where('user_id', Auth::user()->id)->where('track_id', $track_id)->first();
+        dd($likes);
         // Comment::where('id', $comment_id)->delete();
         return redirect()->back();
     }
