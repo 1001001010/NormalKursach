@@ -35,4 +35,10 @@ class TrackController extends Controller
         Comment::where('id', $comment_id)->delete();
         return redirect()->back();
     }
+    public function like($track_id)
+    {
+        
+        // Comment::where('id', $comment_id)->delete();
+        return redirect()->back();
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Track;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $tracks = Track::where('user_id', Auth::user()->id)->get();
+        return view('home', ['tracks' => $tracks]);
+    }
+
+    public function main()
+    {
+        // $liked = 
+        return view('mainPage');    
     }
 }

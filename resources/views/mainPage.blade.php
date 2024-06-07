@@ -113,10 +113,23 @@
         </div>
 
         <div class="container">
-            <div class="container d-flex justify-content-center align-items-center">
-                <img src="{{ asset('img/like.svg') }}" alt="">
-                <p class="text_like">Понравившиеся треки</p>
-                <a href="" class="">Посмотреть все</a>
+            <div class="container d-flex align-items-start">
+                <div class="col-md-12">
+                    <div class="card mb-3 p-3">
+                        <h5 class="card-title">Понравившиеся треки</h5>
+                        <div class="container d-flex flex-md-row gap-2 w-auto">
+                            <div class="me-2">
+                                <a href=""><img src="{{ asset('img/Rectangle.png') }}"
+                                        style="width: 50px; height: 50px;"></a>
+                            </div>
+                            <div>
+                                <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
+                                    style="--bs-text-opacity: 0.6;">Трек</a>
+                                <div class="fs-7 text-black w-auto" style="--bs-text-opacity: 0.6;">Исполниель</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

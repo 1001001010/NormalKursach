@@ -3,11 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MusicController;
 
-Route::get('/', function () {
-    return view('mainPage');
-});
-
-
 Route::get('/upload', function () {
     return view('uploadTrackPage');
 })->middleware('auth');
@@ -15,6 +10,8 @@ Route::get('/upload', function () {
 Route::post('/new_music', [MusicController::class, 'New_Music'])->name('NewMusic')->middleware('auth');
 
 Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
