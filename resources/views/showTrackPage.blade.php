@@ -13,8 +13,12 @@
                         <audio controls class="w-100">
                             <source src="{{ asset('storage/' . $track->music_file) }}">
                         </audio>
-                        <a class="btn btn-outline-warning"
-                            href="{{ route('Like', ['track_id' => $track->id]) }}">Нравится</a>
+                        @if ($like)
+                            <a class="btn btn-outline-warning"
+                                href="{{ route('Like', ['track_id' => $track->id]) }}">Нравится</a>
+                        @else
+                            <a class="btn btn-warning" href="{{ route('Like', ['track_id' => $track->id]) }}">Нравится</a>
+                        @endif
                     </div>
                     <h6 class="border-bottom pb-2 mb-0 pt-4">Комментарии</h6>
                     <div class="form-group py-3">

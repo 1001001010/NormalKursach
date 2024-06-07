@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Like extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'track_id',
+    ];
+
     public function track() {
         return $this->belongsTo(Track::class);
     }

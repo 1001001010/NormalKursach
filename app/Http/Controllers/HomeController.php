@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Track;
+use App\Models\Like;
 use Auth;
 
 class HomeController extends Controller
@@ -31,7 +32,8 @@ class HomeController extends Controller
 
     public function main()
     {
-        // $liked = 
-        return view('mainPage');    
+        $random_traks = Track::with(['user'])->inRandomOrder()->get();
+        $liked = Like::with(['user', 'track'])->where('user_id', Auth::user()->id)->get();
+        return view('mainPage', ['likes' => $liked, 'random_traks' => $random_traks]);    
     }
 }

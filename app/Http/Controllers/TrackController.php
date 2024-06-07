@@ -13,7 +13,8 @@ class TrackController extends Controller
     public function show_track($id)
     {
         $track = Track::with(['comment'])->where('id', $id)->first();
-        return view('showTrackPage', ['track' => $track]);
+        $like = Like::where('track_id', $id)->where('user_id', Auth::user()->id)->first();
+        return view('showTrackPage', ['track' => $track, 'like' => $like]);
     }
 
     public function new_comment($id, Request $request)
@@ -39,8 +40,15 @@ class TrackController extends Controller
     public function like($track_id)
     {
         $likes = Like::where('user_id', Auth::user()->id)->where('track_id', $track_id)->first();
-        dd($likes);
-        // Comment::where('id', $comment_id)->delete();
+        if ($likes) {
+            Like::where('track_id', $track_id)->where('user_id', Auth::user()->id)->delete();
+        } else {
+            $like_info = ([
+                'user_id' => Auth::user()->id,
+                'track_id' => $track_id,
+            ]);
+            Like::create($like_info);
+        }
         return redirect()->back();
     }
 }
