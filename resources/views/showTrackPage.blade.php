@@ -8,6 +8,10 @@
                     <img src="{{ asset('storage/' . $track->cover_file) }}" alt="" class="rounded float-start"
                         width="200" height="200">
                     <h3 class="main_text">{{ $track->name }}</h3>
+                    @if ($track->user_id == Auth::user()->id)
+                        <a href="{{ route('deleteTrack', ['track_id' => $track->id]) }}" class="btn btn-danger"
+                            style="width: 150px" href="{{ route('Like', ['track_id' => $track->id]) }}">Удалить</a>
+                    @endif
                     <p class="main_text">Жанр: {{ $track->genre }}</p>
                     <div class="d-flex justify-content-start gap-5">
                         <audio controls class="w-100">

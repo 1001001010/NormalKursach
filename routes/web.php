@@ -24,4 +24,6 @@ Route::post('/new_comment/{id}', [App\Http\Controllers\TrackController::class, '
 
 Route::get('/del_comment/{comment_id}', [App\Http\Controllers\TrackController::class, 'delete_comment'])->name('DeleteComm')->middleware('auth');
 
+Route::get('/del_track/{track_id}', [App\Http\Controllers\TrackController::class, 'delete_track'])->name('deleteTrack')->middleware('auth');
+
 Route::post('/search', [HomeController::class, 'search'])->name('search');
