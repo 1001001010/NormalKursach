@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MusicController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/upload', function () {
     return view('uploadTrackPage');
@@ -22,3 +23,5 @@ Route::get('/like/{track_id}', [App\Http\Controllers\TrackController::class, 'li
 Route::post('/new_comment/{id}', [App\Http\Controllers\TrackController::class, 'new_comment'])->name('NewCommetn')->middleware('auth');
 
 Route::get('/del_comment/{comment_id}', [App\Http\Controllers\TrackController::class, 'delete_comment'])->name('DeleteComm')->middleware('auth');
+
+Route::post('/search', [HomeController::class, 'search'])->name('search');

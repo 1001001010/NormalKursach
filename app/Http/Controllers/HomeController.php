@@ -36,4 +36,10 @@ class HomeController extends Controller
         $liked = Like::with(['user', 'track'])->where('user_id', Auth::user()->id)->get();
         return view('mainPage', ['likes' => $liked, 'random_traks' => $random_traks]);    
     }
+    public function search(Request $request) {
+        // Поиск
+        $word = $request->word;
+        $track = Track::where('name', 'like', "%{$word}%")->orderBy('id')->get();
+        return view('search', ['track' => $track]);
+    }
 }

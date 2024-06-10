@@ -6,7 +6,8 @@
                 <li><a href="#" class="nav-link px-2 text-white">Библиотека</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">Для артиста</a></li>
                 <li><a href="/upload" class="nav-link px-2 text-white">Загрузить трек</a></li>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{{ route('search') }}" method="POST">
+                    @csrf
                     <input type="search" class="form-control form-control-dark" placeholder="Поиск">
                 </form>
             </ul>
