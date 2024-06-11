@@ -45,4 +45,8 @@ class MusicController extends Controller
 
         return redirect()->route('ShawTrack', ['id' => $track]);
     }
+    public function New_Albom(Request $request)
+    {
+        
+    }
 }

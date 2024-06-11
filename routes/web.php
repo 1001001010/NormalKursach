@@ -10,6 +10,8 @@ Route::get('/upload', function () {
 
 Route::post('/new_music', [MusicController::class, 'New_Music'])->name('NewMusic')->middleware('auth');
 
+Route::post('/new/albom', [MusicController::class, 'New_Albom'])->name('NewAlbom')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'main'])->name('main');

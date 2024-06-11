@@ -16,6 +16,45 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Альбомы</h5>
+                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Добавить альбом</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog  modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Добавление альбома</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                            <form class="m-5" enctype="multipart/form-data" method="POST"
+                                                action="{{ route('NewAlbom') }}">
+                                                @csrf
+                                                <h3 class="main_text">Загрузка трека</h3>
+                                                <div class="mb-3">
+                                                    <label for="track_name" class="form-label">Название Альбома</label>
+                                                    <input type="text" class="form-control" id="track_name"
+                                                        name="track_name">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="cover" class="form-label">Обложка</label>
+                                                    <input type="file" class="form-control" id="cover"
+                                                        name="cover">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Загрузить</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex gap-5 flex-wrap">
                                 <div class="container d-flex flex-md-column gap-2 links w-auto">

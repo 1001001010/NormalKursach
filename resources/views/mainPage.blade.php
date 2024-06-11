@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="container-fluid d-flex">
-        <div class="container col-7">
+        <div class="container col-7 border pb-4">
             <div class=" container ml-5 mt-5">
                 <div class="container mt-5 row gap-5">
                     @foreach ($random_traks as $treak)
