@@ -11,4 +11,13 @@ class Albom extends Model
     protected $casts = [
         'music' => 'json',
     ];
+    protected $fillable = [
+        'user_id',
+        'music',
+        'name',
+        'cover_file'
+    ];
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

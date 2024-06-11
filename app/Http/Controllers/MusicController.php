@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Track;
+use App\Models\Albom;
 use Illuminate\Support\Facades\Auth;
 
 class MusicController extends Controller
@@ -47,6 +48,21 @@ class MusicController extends Controller
     }
     public function New_Albom(Request $request)
     {
-        
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'cover' => 'required|image|mimes:jpg,png,jpeg,webp|max:8192'
+        ]);
+
+        $coverFile = $request->file('cover');
+        $timestamp = time();
+        $coverPath = $coverFile->storeAs('covers', $timestamp. '.'. $coverFile->getClientOriginalExtension(), 'public');
+
+        $data = [
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'cover_file' => $coverPath
+        ];
+        Albom::create($data);
+        return redirect()->back();
     }
 }

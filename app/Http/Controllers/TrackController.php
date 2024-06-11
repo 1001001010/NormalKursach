@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Track;
 use App\Models\Comment;
 use App\Models\Like;
+use App\Models\Albom;
 use Auth;
 
 class TrackController extends Controller
@@ -55,5 +56,36 @@ class TrackController extends Controller
     {
         Track::where('id', $track_id)->delete();
         return view('home', ['tracks' => Track::where('user_id', Auth::user()->id)->get()]);
+    }
+    public function delete_albom($albom_id)
+    {
+        Albom::where('id', $albom_id)->delete();
+        return view('home', ['tracks' => Track::where('user_id', Auth::user()->id)->get()]);
+    }
+    public function show_albom($id)
+    {
+        
+        $newTrack = Track::get();
+        $albom = Albom::with('user')->where('id', $id)->first();
+        $track_ids = $albom->music;
+        $tracks = Track::whereIn('id', $track_ids)->get();
+        return view('showAlbomPage', ['albom' => $albom, 'newTrack' => $newTrack, 'tracks' => $tracks]);
+    }
+    public function new_track_in_albom($albom_id, Request $request)
+    {
+        $album = Albom::find($albom_id);
+       
+        $track_id = $request->input('track_id');
+    
+        if (in_array($track_id, $album->music ?? [])) {
+            // Track ID already exists in the album's music array
+            return redirect()->back()->with('error', 'Track already exists in the album');
+        }
+    
+        $music = $album->music?: [];
+        $music[] = $track_id;
+        $album->setAttribute('music', $music);
+        $album->save();
+        return redirect()->back()->with('success', 'Track added to the album');
     }
 }

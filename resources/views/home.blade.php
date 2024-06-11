@@ -30,13 +30,13 @@
                                     <div class="modal-body">
                                         <div class="card">
                                             <form class="m-5" enctype="multipart/form-data" method="POST"
-                                                action="{{ route('NewAlbom') }}">
+                                                action="{{ route('NewAlbom') }}" enctype="multipart/form-data">
                                                 @csrf
                                                 <h3 class="main_text">Загрузка трека</h3>
                                                 <div class="mb-3">
                                                     <label for="track_name" class="form-label">Название Альбома</label>
                                                     <input type="text" class="form-control" id="track_name"
-                                                        name="track_name">
+                                                        name="name">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="cover" class="form-label">Обложка</label>
@@ -47,51 +47,24 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex gap-5 flex-wrap">
-                                <div class="container d-flex flex-md-column gap-2 links w-auto">
-                                    <a href=""><img src="{{ asset('img/Rectangle.png') }}" alt=""></a>
-                                    <a href="" class="link-primary text-decoration-none fs-3 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Трек</a>
-                                    <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Исполниель</a>
-                                </div>
-                                <div class="container d-flex flex-md-column gap-2 links w-auto">
-                                    <a href=""><img src="{{ asset('img/Rectangle.png') }}" alt=""></a>
-                                    <a href="" class="link-primary text-decoration-none fs-3 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Трек</a>
-                                    <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Исполниель</a>
-                                </div>
-                                <div class="container d-flex flex-md-column gap-2 links w-auto">
-                                    <a href=""><img src="{{ asset('img/Rectangle.png') }}" alt=""></a>
-                                    <a href="" class="link-primary text-decoration-none fs-3 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Трек</a>
-                                    <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Исполниель</a>
-                                </div>
-                                <div class="container d-flex flex-md-column gap-2 links w-auto">
-                                    <a href=""><img src="{{ asset('img/Rectangle.png') }}" alt=""></a>
-                                    <a href="" class="link-primary text-decoration-none fs-3 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Трек</a>
-                                    <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Исполниель</a>
-                                </div>
-                                <div class="container d-flex flex-md-column gap-2 links w-auto">
-                                    <a href=""><img src="{{ asset('img/Rectangle.png') }}" alt=""></a>
-                                    <a href="" class="link-primary text-decoration-none fs-3 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Трек</a>
-                                    <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
-                                        style="--bs-text-opacity: 0.6;">Исполниель</a>
-                                </div>
+                                @foreach ($alboms as $item)
+                                    <div
+                                        class="container d-flex flex-md-column gap-2 links w-auto justify-content-center align-items-center">
+                                        <a href="{{ route('ShawAlbom', ['id' => $item->id]) }}"><img
+                                                src="{{ asset('storage/' . $item->cover_file) }}"
+                                                style="width: 120px; height: 120px;" alt=""></a>
+                                        <a href="{{ route('ShawAlbom', ['id' => $item->id]) }}"
+                                            class="link-primary text-decoration-none fs-3 text-black w-auto"
+                                            style="--bs-text-opacity: 0.6;">{{ $item->name }}</a>
+                                        <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
+                                            style="--bs-text-opacity: 0.6;">{{ $item->user->name }}</a>
+                                    </div>
+                                @endforeach
                             </li>
                         </ul>
                         <hr>
@@ -101,9 +74,11 @@
                                 @foreach ($tracks as $track)
                                     <div
                                         class="container d-flex flex-md-column gap-2 links w-auto justify-content-center align-items-center">
-                                        <a href=""><img src="{{ asset('storage/' . $track->cover_file) }}"
+                                        <a href="{{ route('ShawTrack', ['id' => $track->id]) }}"><img
+                                                src="{{ asset('storage/' . $track->cover_file) }}"
                                                 style="width: 120px; height: 120px;" alt=""></a>
-                                        <a href="" class="link-primary text-decoration-none fs-3 text-black w-auto"
+                                        <a href="{{ route('ShawTrack', ['id' => $track->id]) }}"
+                                            class="link-primary text-decoration-none fs-3 text-black w-auto"
                                             style="--bs-text-opacity: 0.6;">{{ $track->name }}</a>
                                         <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
                                             style="--bs-text-opacity: 0.6;">{{ $track->user->name }}</a>

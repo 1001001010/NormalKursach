@@ -51,16 +51,3 @@
         @endif
     </div>
 @endsection
-{{-- <footer>
-
-</footer>
-</body>
-
-</html> --}}
-
-<!-- <style>
-                                  .links a:first-child {
-                                    width: 120px;
-                                    height: 120px;
-                                  }
-                                </style> -->
