@@ -28,10 +28,10 @@ class MusicController extends Controller
         $timestamp = time();
 
         // Скачиваем и переименовываем в $timestamp трек
-        $musicPath = $musicFile->storeAs('storage/music', $timestamp. '.'. $musicFile->getClientOriginalExtension(), 'public');
+        $musicPath = $musicFile->storeAs('public/music', $timestamp. '.'. $musicFile->getClientOriginalExtension(), 'public');
 
         // Скачиваем и переименовываем в $timestamp обложку
-        $coverPath = $coverFile->storeAs('storage/covers', $timestamp. '.'. $coverFile->getClientOriginalExtension(), 'public');
+        $coverPath = $coverFile->storeAs('public/covers', $timestamp. '.'. $coverFile->getClientOriginalExtension(), 'public');
 
         $track = [
             'user_id' => Auth::user()->id,
