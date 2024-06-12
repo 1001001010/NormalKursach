@@ -34,4 +34,6 @@ Route::get('/del_track/{track_id}', [App\Http\Controllers\TrackController::class
 
 Route::get('/del_albom/{albom_id}', [App\Http\Controllers\TrackController::class, 'delete_albom'])->name('deleteAlbom')->middleware('auth');
 
+Route::put('/new_avatar', [HomeController::class, 'avatar'])->name('NewAvatar')->middleware(['auth']);
+
 Route::post('/search', [HomeController::class, 'search'])->name('search');

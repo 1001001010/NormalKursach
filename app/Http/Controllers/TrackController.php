@@ -55,12 +55,12 @@ class TrackController extends Controller
     public function delete_track($track_id)
     {
         Track::where('id', $track_id)->delete();
-        return view('home', ['tracks' => Track::where('user_id', Auth::user()->id)->get()]);
+        return view('home', ['tracks' => Track::where('user_id', Auth::user()->id)->get(), 'alboms'=>Albom::with(['user'])->where('user_id', Auth::user()->id)->get()]);
     }
     public function delete_albom($albom_id)
     {
         Albom::where('id', $albom_id)->delete();
-        return view('home', ['tracks' => Track::where('user_id', Auth::user()->id)->get()]);
+        return view('home', ['tracks' => Track::where('user_id', Auth::user()->id)->get(), 'alboms'=>Albom::with(['user'])->where('user_id', Auth::user()->id)->get()]);
     }
     public function show_albom($id)
     {
@@ -68,7 +68,11 @@ class TrackController extends Controller
         $newTrack = Track::get();
         $albom = Albom::with('user')->where('id', $id)->first();
         $track_ids = $albom->music;
-        $tracks = Track::whereIn('id', $track_ids)->get();
+        if (!empty($track_ids)){            
+            $tracks = Track::whereIn('id', $track_ids)->get();
+        } else {
+            $tracks = null;
+        }
         return view('showAlbomPage', ['albom' => $albom, 'newTrack' => $newTrack, 'tracks' => $tracks]);
     }
     public function new_track_in_albom($albom_id, Request $request)

@@ -20,23 +20,25 @@
                         </div>
                     </div>
                     <h3>Список треков:</h3>
-                    @foreach ($tracks as $item)
-                        <div class="d-flex flex-md-row gap-2 w-auto pb-2 pt-2">
-                            <div class="me-2">
-                                <a href="{{ route('ShawTrack', ['id' => $item->id]) }}"><img
-                                        src="{{ asset('storage/' . $item->cover_file) }}"
-                                        style="width: 50px; height: 50px;"></a>
-                            </div>
-                            <div>
-                                <a href="{{ route('ShawTrack', ['id' => $item->id]) }}"
-                                    class="link-primary text-decoration-none fs-5 text-black w-auto"
-                                    style="--bs-text-opacity: 0.6;">{{ $item->name }}</a>
-                                <div class="fs-7 text-black w-auto" style="--bs-text-opacity: 0.6;">
-                                    {{ $item->name }}
+                    @if (isset($tracks))
+                        @foreach ($tracks as $item)
+                            <div class="d-flex flex-md-row gap-2 w-auto pb-2 pt-2">
+                                <div class="me-2">
+                                    <a href="{{ route('ShawTrack', ['id' => $item->id]) }}"><img
+                                            src="{{ asset('storage/' . $item->cover_file) }}"
+                                            style="width: 100px; height: 100px;"></a>
+                                </div>
+                                <div>
+                                    <a href="{{ route('ShawTrack', ['id' => $item->id]) }}"
+                                        class="link-primary text-decoration-none fs-5 text-black w-auto"
+                                        style="--bs-text-opacity: 0.6;">{{ $item->name }}</a>
+                                    <div class="fs-7 text-black w-auto" style="--bs-text-opacity: 0.6;">
+                                        {{ $item->name }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

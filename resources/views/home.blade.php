@@ -6,9 +6,26 @@
             <div class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-body">
+                        @if (Auth::user()->photo != null)
+                            <img src="{{ asset(Auth::user()->photo) }}" alt="..." class="img-thumbnail"
+                                style="width: 200px; height: 200px">
+                        @else
+                            <img src="{{ asset('img/ava.png') }}" alt="..." class="img-thumbnail"
+                                style="width: 200px; height: 200px">
+                        @endif
                         <h5 class="card-title">{{ Auth::user()->name }}</h5>
                         <p class="card-text">Дата регистрации: {{ Auth::user()->created_at->format('M. j, Y') }}</p>
                         <p class="card-text">Всего треков: {{ count(Auth::user()->tracks) }}</p>
+                        <form id="avatar-file-form" method="POST" enctype="multipart/form-data"
+                            action="{{ route('NewAvatar') }}">
+                            @csrf
+                            @method('PUT')
+                            <label class="btn btn-primary" for="avatar_change">
+                                Изменить фото
+                                <input type="file" class="custom-file-input" name="avatar_change" id="avatar_change"
+                                    style="display: none;">
+                            </label>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -52,19 +69,22 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex gap-5 flex-wrap">
-                                @foreach ($alboms as $item)
-                                    <div
-                                        class="container d-flex flex-md-column gap-2 links w-auto justify-content-center align-items-center">
-                                        <a href="{{ route('ShawAlbom', ['id' => $item->id]) }}"><img
-                                                src="{{ asset('storage/' . $item->cover_file) }}"
-                                                style="width: 120px; height: 120px;" alt=""></a>
-                                        <a href="{{ route('ShawAlbom', ['id' => $item->id]) }}"
-                                            class="link-primary text-decoration-none fs-3 text-black w-auto"
-                                            style="--bs-text-opacity: 0.6;">{{ $item->name }}</a>
-                                        <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
-                                            style="--bs-text-opacity: 0.6;">{{ $item->user->name }}</a>
-                                    </div>
-                                @endforeach
+                                @if ($alboms)
+                                    @foreach ($alboms as $item)
+                                        <div
+                                            class="container d-flex flex-md-column gap-2 links w-auto justify-content-center align-items-center">
+                                            <a href="{{ route('ShawAlbom', ['id' => $item->id]) }}"><img
+                                                    src="{{ asset('storage/' . $item->cover_file) }}"
+                                                    style="width: 120px; height: 120px;" alt=""></a>
+                                            <a href="{{ route('ShawAlbom', ['id' => $item->id]) }}"
+                                                class="link-primary text-decoration-none fs-3 text-black w-auto"
+                                                style="--bs-text-opacity: 0.6;">{{ $item->name }}</a>
+                                            <a href=""
+                                                class="link-primary text-decoration-none fs-5 text-black w-auto"
+                                                style="--bs-text-opacity: 0.6;">{{ $item->user->name }}</a>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </li>
                         </ul>
                         <hr>
@@ -91,4 +111,9 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('avatar_change').addEventListener('change', function() {
+            document.getElementById('avatar-file-form').submit();
+        });
+    </script>
 @endsection
