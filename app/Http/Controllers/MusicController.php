@@ -11,12 +11,12 @@ class MusicController extends Controller
 {
     public function new_music(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'track' => 'required|mimetypes:audio/flac,audio/wav,audio/alac,audio/aiff|max:8192',
-        //     'track_name' => 'required|string',
-        //     'genre_track' => 'required|string',
-        //     'cover' => 'required|image|mimes:jpg,png,jpeg,webp|max:8192'
-        // ]);
+        $validatedData = $request->validate([
+            'track' => 'required|mimetypes:audio/flac,audio/wav,audio/alac,audio/aiff,audio/mpeg|max:8192',
+            'track_name' => 'required|string',
+            'genre_track' => 'required|string',
+            'cover' => 'required|image|mimes:jpg,png,jpeg,webp|max:8192'
+        ]);
 
         // Получаем трек и обложку
         $musicFile = $request->file('track');
