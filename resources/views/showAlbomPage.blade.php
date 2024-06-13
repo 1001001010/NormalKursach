@@ -59,7 +59,7 @@
                             @csrf
                             <select class="form-select" aria-label="Пример выбора по умолчанию" name="track_id">
                                 @foreach ($newTrack as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    <option value="{{ $item->track->id }}">{{ $item->track->name }}</option>
                                 @endforeach
                             </select>
                             <button type="submit" class="btn btn-primary">Добавить</button>

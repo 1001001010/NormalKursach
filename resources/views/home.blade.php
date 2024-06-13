@@ -32,15 +32,15 @@
             <div class="col-md-8">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">Альбомы</h5>
+                        <h5 class="card-title">Плэйлисты</h5>
                         <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Добавить альбом</button>
+                            data-bs-target="#exampleModal">Добавить плейлист</button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog  modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Добавление альбома</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Добавление плейлиста</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -51,7 +51,7 @@
                                                 @csrf
                                                 <h3 class="main_text">Загрузка трека</h3>
                                                 <div class="mb-3">
-                                                    <label for="track_name" class="form-label">Название Альбома</label>
+                                                    <label for="track_name" class="form-label">Название плейлиста</label>
                                                     <input type="text" class="form-control" id="track_name"
                                                         name="name">
                                                 </div>

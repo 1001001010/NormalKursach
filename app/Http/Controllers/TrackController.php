@@ -65,7 +65,7 @@ class TrackController extends Controller
     public function show_albom($id)
     {
         
-        $newTrack = Track::get();
+        $newTrack = Like::with('track')->where('user_id', Auth::user()->id)->get();
         $albom = Albom::with('user')->where('id', $id)->first();
         $track_ids = $albom->music;
         if (!empty($track_ids)){            
