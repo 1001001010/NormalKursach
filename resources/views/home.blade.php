@@ -6,26 +6,28 @@
             <div class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-body">
-                        @if (Auth::user()->photo != null)
-                            <img src="{{ asset(Auth::user()->photo) }}" alt="..." class="img-thumbnail"
+                        @if ($user->photo != null)
+                            <img src="{{ asset($user->photo) }}" alt="..." class="img-thumbnail"
                                 style="width: 200px; height: 200px">
                         @else
                             <img src="{{ asset('img/ava.png') }}" alt="..." class="img-thumbnail"
                                 style="width: 200px; height: 200px">
                         @endif
-                        <h5 class="card-title">{{ Auth::user()->name }}</h5>
-                        <p class="card-text">Дата регистрации: {{ Auth::user()->created_at->format('M. j, Y') }}</p>
-                        <p class="card-text">Всего треков: {{ count(Auth::user()->tracks) }}</p>
-                        <form id="avatar-file-form" method="POST" enctype="multipart/form-data"
-                            action="{{ route('NewAvatar') }}">
-                            @csrf
-                            @method('PUT')
-                            <label class="btn btn-primary" for="avatar_change">
-                                Изменить фото
-                                <input type="file" class="custom-file-input" name="avatar_change" id="avatar_change"
-                                    style="display: none;">
-                            </label>
-                        </form>
+                        <h5 class="card-title">{{ $user->name }}</h5>
+                        <p class="card-text">Дата регистрации: {{ $user->created_at->format('M. j, Y') }}</p>
+                        <p class="card-text">Всего треков: {{ count($user->tracks) }}</p>
+                        @if ($user->id == Auth::user()->id)
+                            <form id="avatar-file-form" method="POST" enctype="multipart/form-data"
+                                action="{{ route('NewAvatar') }}">
+                                @csrf
+                                @method('PUT')
+                                <label class="btn btn-primary" for="avatar_change">
+                                    Изменить фото
+                                    <input type="file" class="custom-file-input" name="avatar_change" id="avatar_change"
+                                        style="display: none;">
+                                </label>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -33,8 +35,10 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Плэйлисты</h5>
-                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Добавить плейлист</button>
+                        @if ($user->id == Auth::user()->id)
+                            <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Добавить плейлист</button>
+                        @endif
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog  modal-dialog-centered">
@@ -51,7 +55,8 @@
                                                 @csrf
                                                 <h3 class="main_text">Загрузка трека</h3>
                                                 <div class="mb-3">
-                                                    <label for="track_name" class="form-label">Название плейлиста</label>
+                                                    <label for="track_name" class="form-label">Название
+                                                        плейлиста</label>
                                                     <input type="text" class="form-control" id="track_name"
                                                         name="name">
                                                 </div>

@@ -19,6 +19,7 @@
                                         class="link-primary text-decoration-none fs-3 text-black w-auto"
                                         style="--bs-text-opacity: 0.6;">{{ $item->name }}</a>
                                     <a class="link-primary text-decoration-none fs-5 text-black w-auto"
+                                        href="{{ route('home', ['user_id' => $item->user->id]) }}"
                                         style="--bs-text-opacity: 0.6;">{{ $item->user->name }}</a>
                                 </div>
                             @endforeach
@@ -37,6 +38,7 @@
                                         class="link-primary text-decoration-none fs-3 text-black w-auto"
                                         style="--bs-text-opacity: 0.6;">{{ $item->name }}</a>
                                     <a class="link-primary text-decoration-none fs-5 text-black w-auto"
+                                        href="{{ route('home', ['user_id' => $item->user->id]) }}"
                                         style="--bs-text-opacity: 0.6;">{{ $item->user->name }}</a>
                                 </div>
                             @endforeach

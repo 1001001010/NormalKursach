@@ -16,7 +16,7 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home/{user_id}', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::get('/track/{id}', [App\Http\Controllers\TrackController::class, 'show_track'])->name('ShawTrack');
 

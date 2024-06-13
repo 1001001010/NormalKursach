@@ -28,7 +28,8 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="{{ route('home') }}">Профиль</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('home', ['user_id' => Auth::user()->id]) }}">Профиль</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"

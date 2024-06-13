@@ -17,6 +17,7 @@
                                 class="link-primary text-decoration-none fs-3 text-black w-auto"
                                 style="--bs-text-opacity: 0.6;">{{ $treak->name }}</a>
                             <a class="link-primary text-decoration-none fs-5 text-black w-auto"
+                                href="{{ route('home', ['user_id' => $treak->user->id]) }}"
                                 style="--bs-text-opacity: 0.6;">{{ $treak->user->name }}</a>
                         </div>
                     @endforeach
@@ -41,7 +42,9 @@
                                             class="link-primary text-decoration-none fs-5 text-black w-auto"
                                             style="--bs-text-opacity: 0.6;">{{ $like->track->name }}</a>
                                         <div class="fs-7 text-black w-auto" style="--bs-text-opacity: 0.6;">
-                                            {{ $like->user->name }}
+                                            <a href="{{ route('home', ['user_id' => $like->user->id]) }}">
+                                                {{ $like->user->name }}
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

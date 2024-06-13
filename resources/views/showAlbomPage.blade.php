@@ -10,7 +10,8 @@
                             width="200" height="200">
                         <div class="ml-3">
                             <h3 class="main_text">{{ $albom->name }}</h3>
-                            <h3 class="Автор альбома">{{ $albom->user->name }}</h3>
+                            <a href="{{ route('home', ['user_id' => $albom->user->id]) }}">Создатель плейлиста:
+                                {{ $albom->user->name }}</a>
                             @if ($albom->user->id == Auth::user()->id)
                                 <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary ml-3"
                                     style="width: 150px">Добавить трек</button>

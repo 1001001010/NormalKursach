@@ -26,11 +26,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($user_id)
     {
-        $tracks = Track::where('user_id', Auth::user()->id)->get();
-        $albom = Albom::with(['user'])->where('user_id', Auth::user()->id)->get();
-        return view('home', ['tracks' => $tracks, 'alboms' => $albom]);
+        $tracks = Track::where('user_id', $user_id)->get();
+        $albom = Albom::with(['user'])->where('user_id', $user_id)->get();
+        $user = User::where('id', $user_id)->first();
+        return view('home', ['tracks' => $tracks, 'alboms' => $albom, 'user' => $user]);
     }
 
     public function main()
