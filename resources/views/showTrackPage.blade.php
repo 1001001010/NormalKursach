@@ -40,7 +40,7 @@
                             <p class="pb-3 mb-0 small lh-sm w-100 border-bottom">
                                 <strong class="d-block text-gray-dark">{{ $item->user->name }}</strong>
                                 {{ $item->comment }}
-                                @if ($item->user->id = Auth::user()->id)
+                                @if ($item->user->id == Auth::user()->id)
                                     <a type="button" href="{{ route('DeleteComm', ['comment_id' => $item->id]) }}"
                                         class="btn btn-outline-danger">Удалить</a>
                                 @endif
