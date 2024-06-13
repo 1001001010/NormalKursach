@@ -32,11 +32,13 @@
                             @foreach ($likes as $like)
                                 <div class="d-flex flex-md-row gap-2 w-auto pb-2">
                                     <div class="me-2">
-                                        <a href=""><img src="{{ asset('storage/' . $like->track->cover_file) }}"
+                                        <a href="{{ route('ShawTrack', ['id' => $like->track->id]) }}"><img
+                                                src="{{ asset('storage/' . $like->track->cover_file) }}"
                                                 style="width: 50px; height: 50px;"></a>
                                     </div>
                                     <div>
-                                        <a href="" class="link-primary text-decoration-none fs-5 text-black w-auto"
+                                        <a href="{{ route('ShawTrack', ['id' => $like->track->id]) }}"
+                                            class="link-primary text-decoration-none fs-5 text-black w-auto"
                                             style="--bs-text-opacity: 0.6;">{{ $like->track->name }}</a>
                                         <div class="fs-7 text-black w-auto" style="--bs-text-opacity: 0.6;">
                                             {{ $like->user->name }}
