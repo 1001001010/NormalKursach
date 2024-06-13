@@ -8,6 +8,8 @@
                     <img src="{{ asset('storage/' . $track->cover_file) }}" alt="" class="rounded float-start"
                         width="200" height="200">
                     <h3 class="main_text">{{ $track->name }}</h3>
+                    <a href="{{ route('home', ['user_id' => $track->user->id]) }}"
+                        class="main_text">{{ $track->user->name }}</a>
                     @if ($track->user_id == Auth::user()->id)
                         <a href="{{ route('deleteTrack', ['track_id' => $track->id]) }}" class="btn btn-danger"
                             style="width: 150px" href="{{ route('Like', ['track_id' => $track->id]) }}">Удалить</a>
@@ -40,7 +42,7 @@
                             <p class="pb-3 mb-0 small lh-sm w-100 border-bottom">
                                 <strong class="d-block text-gray-dark">{{ $item->user->name }}</strong>
                                 {{ $item->comment }}
-                                @if ($item->user->id == Auth::user()->id)
+                                @if (Auth::id() == $item->user->id || Auth::id() == $track->user->id)
                                     <a type="button" href="{{ route('DeleteComm', ['comment_id' => $item->id]) }}"
                                         class="btn btn-outline-danger">Удалить</a>
                                 @endif

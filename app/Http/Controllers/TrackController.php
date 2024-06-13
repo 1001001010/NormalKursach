@@ -13,7 +13,7 @@ class TrackController extends Controller
 {
     public function show_track($id)
     {
-        $track = Track::with(['comment'])->where('id', $id)->first();
+        $track = Track::with(['comment', 'user'])->where('id', $id)->first();
         $like = Like::where('track_id', $id)->where('user_id', Auth::user()->id)->first();
         return view('showTrackPage', ['track' => $track, 'like' => $like]);
     }
